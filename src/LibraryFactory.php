@@ -2,6 +2,7 @@
 
 namespace SMW\Scribunto;
 
+use MediaWiki\Parser\Parser;
 use SMW\ParserFunctions\SetParserFunction;
 use SMW\ParserFunctions\SubobjectParserFunction;
 use SMW\ParserParameterProcessor;
@@ -12,7 +13,6 @@ use SMW\Query\QueryResult;
 use SMW\Store;
 use SMW\Services\ServicesFactory as ApplicationFactory;
 use SMW\ParameterProcessorFactory;
-use \Parser;
 
 /**
  * @license GNU GPL v2+

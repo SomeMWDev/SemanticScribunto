@@ -2,6 +2,10 @@
 
 namespace SMW\Scribunto\Tests\Unit;
 
+use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\StripState;
+use MediaWiki\Title\Title;
 use PHPUnit\Framework\TestCase;
 use SMW\ParserFunctions\SetParserFunction;
 use SMW\Query\QueryResult;
@@ -23,7 +27,7 @@ class LibraryFactoryTest extends TestCase {
 
 	protected function setUp(): void {
 
-		$language = $this->getMockBuilder( '\Language' )
+		$language = $this->getMockBuilder( 'MediaWiki\Language\Language' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -39,8 +43,8 @@ class LibraryFactoryTest extends TestCase {
 			->method( 'getQueryResult' )
 			->will( $this->returnValue( $queryResult ) );
 
-		$stripState = $this->createMock( \StripState::class );
-		$this->parser = $this->createMock( \Parser::class );
+		$stripState = $this->createMock( StripState::class );
+		$this->parser = $this->createMock( Parser::class );
 
 		$this->parser->expects( $this->any() )
 			->method( 'getStripState' )
@@ -48,11 +52,11 @@ class LibraryFactoryTest extends TestCase {
 
 		$this->parser->expects( $this->any() )
 			->method( 'getTitle' )
-			->will( $this->returnValue( \Title::newFromText( 'Foo' ) ) );
+			->will( $this->returnValue( Title::newFromText( 'Foo' ) ) );
 
 		$this->parser->expects( $this->any() )
 			->method( 'getOutput' )
-			->will( $this->returnValue( new \ParserOutput() ) );
+			->will( $this->returnValue( new ParserOutput() ) );
 
 		$this->parser->expects( $this->any() )
 			->method( 'getTargetLanguage' )

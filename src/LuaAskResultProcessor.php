@@ -2,6 +2,7 @@
 
 namespace SMW\Scribunto;
 
+use MediaWiki\Linker\Linker;
 use SMW\Query\QueryResult;
 use SMW\Query\Result\ResultArray;
 use SMWDataValue as DataValue;
@@ -170,7 +171,7 @@ class LuaAskResultProcessor {
 				break;
 			default:
 				# FIXME ignores parameter link=none|subject
-				$value = $dataValue->getShortText( SMW_OUTPUT_WIKI, new \Linker() );
+				$value = $dataValue->getShortText( SMW_OUTPUT_WIKI, new Linker() );
 		}
 
 		return $value;
